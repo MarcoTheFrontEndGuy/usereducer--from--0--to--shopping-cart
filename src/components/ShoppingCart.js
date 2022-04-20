@@ -10,7 +10,7 @@ const ShoppingCart = () => {
   const {products, cart} = state; //products,cart,  --from initialState created on reducer
 
   const addToCart = (id) => {
-    console.log(id);
+    // console.log(id);
     dispatch({type: TYPES.ADD_TO_CART, payload: id})
   };
 
