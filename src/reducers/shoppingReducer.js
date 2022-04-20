@@ -11,14 +11,23 @@ export const shoppingInitialState = {
       {id: 6, name: 'Producto 6', price: 600},
    ],
    cart: [],
-}
+};
 
 // 2. Create a reducer function 
 // creates the content of functions and import the names from actions.js 
+
 export function ShoppingReducer(state, action) {
    switch (action.type) {
       case TYPES.ADD_TO_CART: {  
+         let newItem = state.products.find(product => product.id === action.payload);
+
+         return {
+            ...state,
+            cart: [...state.cart, newItem],
+         }
       }
+
+
       case TYPES.REMOVE_ONE_FROM_CART: {
       }
       case TYPES.REMOVE_ALL_FROM_CART: {

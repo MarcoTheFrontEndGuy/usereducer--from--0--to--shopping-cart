@@ -1,6 +1,8 @@
 import React from 'react'
 import { useReducer } from 'react'
+import { TYPES } from '../actions/shoppingAction';
 import { shoppingInitialState, ShoppingReducer } from '../reducers/shoppingReducer';
+import CartItem from './CartItem';
 import ProductItem from './ProductItem';
 
 const ShoppingCart = () => {
@@ -9,7 +11,10 @@ const ShoppingCart = () => {
 
   const addToCart = (id) => {
     console.log(id);
-  }
+    dispatch({type: TYPES.ADD_TO_CART, payload: id})
+  };
+
+
   const deleteFromCart = () => {}
   const clearCart = () => {}
 
@@ -25,7 +30,12 @@ const ShoppingCart = () => {
        <h3>Carrito</h3>
        <article className="box">
          {/* list of selected items to purchase  */}
+         
+         {cart.map((item, index) => (
+            <CartItem key={index} data={item} deleteFromCart={deleteFromCart} />)
+         )}
 
+        <button onClick={clearCart}>Limpiar Carrito</button>
        </article>
     </div>
   )
